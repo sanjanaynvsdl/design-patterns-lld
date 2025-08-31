@@ -5,7 +5,7 @@ public class DBConnectionLazy {
     // to avoid unnecceary creation of the obj when class is being loaded
 
 
-    private static DBConnectionLazy newDB;
+    private static volatile DBConnectionLazy newDB;
     private String type;
 
     private DBConnectionLazy(String type) {
@@ -57,3 +57,6 @@ public class DBConnectionLazy {
     // staic method, as we get the ref of the obj, using above func
     // we can use both the static and non-static methods, on this obj
 }
+
+
+

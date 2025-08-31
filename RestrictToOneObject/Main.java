@@ -1,5 +1,7 @@
 package RestrictToOneObject;
 
+import javax.sound.midi.SysexMessage;
+
 public class Main {
    public static void main(String[] args) {
       // goal - is to create a class where only one single object can be created.
@@ -41,6 +43,27 @@ public class Main {
          System.out.println("something is wrong!" + dbLazy1 + dbLazy2);
       }
 
+      System.out.println("--------------- enum implemnetation");
+      DBConnectionEnum dbEnum1 = DBConnectionEnum.INSTANCE;
+      DBConnectionEnum dbEnum2 = DBConnectionEnum.INSTANCE;
+
+      if(dbEnum1==dbEnum2) {
+         System.out.println("Same address!");
+      }
+
+      String type00= dbEnum1.getType();
+      System.out.println("Type of enum "+type00);
+
+      System.out.println("----------- inner class implementation!");
+      DBConnectionInnerClass dbInnercls1 = DBConnectionInnerClass.getInstance();
+      DBConnectionInnerClass dbInnercls2 = DBConnectionInnerClass.getInstance();
+
+      if(dbInnercls1==dbInnercls2) {
+         System.out.println("same address!"+dbInnercls1);
+      }
+      
    }
+
+
 
 }
