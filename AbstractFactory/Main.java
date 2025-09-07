@@ -1,6 +1,0 @@
-package AbstractFactory;
-
-public class Main {
-    
-    
-}

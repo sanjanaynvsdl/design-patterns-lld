@@ -1,3 +1,4 @@
+- refer class discussion for easier understanding, 
 # Abstract Factory Design Pattern
 
 ## What is Abstract Factory Design Pattern?

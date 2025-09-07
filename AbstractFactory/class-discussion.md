@@ -94,11 +94,6 @@ class Main {
     }
 }
 ```
-
-## Important Note
-**This implementation mostly looks like Factory Method pattern rather than true Abstract Factory pattern.**
-
-Why? Because:
-- We're only creating one type of product (stones) with variations
-- True Abstract Factory creates families of related products (e.g., stone + background + character)
-- This is essentially Factory Method with multiple creation methods for size variations
+- one factory is responsible for creating differnt types of objects, 
+- in previous factory design pattern we created only, Stone
+- in this eexample, we have earthFactory, marsFactory, etc with all diff stones
