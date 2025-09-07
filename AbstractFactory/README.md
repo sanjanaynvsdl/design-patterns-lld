@@ -83,12 +83,6 @@ public static void main(String[] args) {
 }
 ```
 
-## Why Abstract Factory is Needed:
-1. **Consistency**: All objects from same theme family
-2. **Scalability**: Easy to add new themes without changing existing code
-3. **Loose Coupling**: Client only knows interfaces, not concrete classes
-4. **Single Responsibility**: Each factory handles one family
-
 ## When to Use:
 - When you need families of related/dependent objects
 - When you want to ensure objects from same family work together
@@ -96,3 +90,8 @@ public static void main(String[] args) {
 
 ## Key Concept:
 Abstract Factory = Factory Method + One More Layer (creates families instead of single objects)
+
+-------------------------------------
+
+In factory we creaed only objects of stone class
+- But in the abstract factory, we can create the multiple types of objects, 
