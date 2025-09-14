@@ -138,6 +138,24 @@ ListClass {
 - Pass flying strategy at runtime via constructor
 - Similarly for IHunting, IEating behaviors
 
+### Implementation Benefits:
+
+1. **Clean separation:** No Bird subclasses (Eagle, Pigeon, etc.) - just one Bird class with strategies
+2. **Proper delegation:** `bird.fly()` delegates to `flyStrategy.fly()`
+3. **Flexible composition:** Any bird can have any combination of flying and hunting behaviors
+4. **Simple interfaces:** IFlyStrategy and IHuntStrategy with single methods
+
+### Benefits Demonstrated:
+
+- **No inheritance mess:** Instead of Eagle, Pigeon, Kiwi classes with overlapping behaviors
+- **Mix and match:**
+  ```java
+  Eagle = new Bird(flyHigh, aerialHunt);
+  Kiwi = new Bird(noFly, groundHunt);
+  Pigeon = new Bird(flyLow, groundHunt);
+  ```
+- **Runtime flexibility:** Could even change strategies with setters if needed
+
 ---
 
 ## When to Use Strategy Pattern
