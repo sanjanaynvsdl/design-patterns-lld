@@ -1,4 +1,4 @@
-package  ex01ListClass;
+package ex01ListClass;
 
 public class HorizontalList extends ListCls {
 
