@@ -1,4 +1,5 @@
 # Factory Design Pattern Notes
+the Factory Pattern is a creational design pattern that abstracts the process of object creation.
 
 ## Simple Factory - Basic way
 
@@ -19,6 +20,38 @@ class Factory {
 **Problem:** What if the Bird type is not given? How can we implement this to return the correct getBird()?
 
 The above code is called **Simple Factory**.
+
+---
+
+## Simple Factory for Stone Example
+
+Before we had Factory Method, let's see how Simple Factory would work for stones:
+
+```java
+class StoneFactory {
+    static Stone getStone(String level, String type) {
+        if(level.equals("Level-1")) {
+            // For balanced version - we need equal distribution
+            // But how do we track what was created before?
+            if(type.equals("small")) return new SmallStone();
+            if(type.equals("medium")) return new MediumStone();
+            if(type.equals("large")) return new LargeStone();
+        } else if(level.equals("Level-2")) {
+            // For random version
+            Random rand = new Random();
+            int choice = rand.nextInt(3);
+            if(choice == 0) return new SmallStone();
+            if(choice == 1) return new MediumStone();
+            return new LargeStone();
+        }
+    }
+}
+```
+
+### Problems with Simple Factory for Stones:
+2. **Complex Logic**: The factory becomes complex with multiple if-else conditions
+3. **Hard to Extend**: Adding new levels means modifying the existing factory
+4. **Mixed Responsibilities**: One class handling multiple creation strategies
 
 ---
 
@@ -67,3 +100,29 @@ void render(IStoneFactory sf) {
 - We have different factory classes to create objects of different classes
 
 **This is known as Factory Method Design Pattern** - where we have an abstract factory and concrete factories such as balanced and random.
+
+---
+
+## How to Explain Factory Design Pattern (Viva Format)
+
+### Definition
+"Factory is a creational design pattern which helps us to abstract the object creation logic at one place, in one class which is called factory."
+
+### Bird Example (Simple Factory)
+- **Problem**: Instead of creating objects directly using `new Hen()`, `new Pigeon()` everywhere
+- **Solution**: Use factory that takes input and creates objects accordingly
+- **Example**: `BirdFactory.getBird("Hen")` → creates Hen object
+- **Key Point**: All created birds can still call their methods like `fly()`, `eat()` because they inherit from Bird class
+
+### Stone Example (Factory Method)
+- **Problem**: What if we need different creation strategies?
+- **Solution**: Multiple factories implementing same interface `IStoneFactory`
+- **BalancedStoneFactory**: Creates stones in equal distribution (Level-1)
+- **RandomStoneFactory**: Creates stones randomly (Level-2)
+- **Key Point**: Both call `getStone()` method but with different creation logic
+
+### Core Understanding
+- **Simple Factory**: One factory takes input, creates appropriate objects
+- **Factory Method**: Multiple factories, each with different creation strategies
+- **Benefit**: Centralized creation logic, easy maintenance, supports polymorphism
+- **Real Usage**: Client calls factory methods without knowing internal creation details
