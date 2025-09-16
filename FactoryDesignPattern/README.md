@@ -23,38 +23,6 @@ The above code is called **Simple Factory**.
 
 ---
 
-## Simple Factory for Stone Example
-
-Before we had Factory Method, let's see how Simple Factory would work for stones:
-
-```java
-class StoneFactory {
-    static Stone getStone(String level, String type) {
-        if(level.equals("Level-1")) {
-            // For balanced version - we need equal distribution
-            // But how do we track what was created before?
-            if(type.equals("small")) return new SmallStone();
-            if(type.equals("medium")) return new MediumStone();
-            if(type.equals("large")) return new LargeStone();
-        } else if(level.equals("Level-2")) {
-            // For random version
-            Random rand = new Random();
-            int choice = rand.nextInt(3);
-            if(choice == 0) return new SmallStone();
-            if(choice == 1) return new MediumStone();
-            return new LargeStone();
-        }
-    }
-}
-```
-
-### Problems with Simple Factory for Stones:
-2. **Complex Logic**: The factory becomes complex with multiple if-else conditions
-3. **Hard to Extend**: Adding new levels means modifying the existing factory
-4. **Mixed Responsibilities**: One class handling multiple creation strategies
-
----
-
 ## Factory Method - Better approach
 
 **Game scenario:** Let's say we have two games, before we start the game we get the option to pick level-1 or level-2
@@ -103,26 +71,73 @@ void render(IStoneFactory sf) {
 
 ---
 
-## How to Explain Factory Design Pattern (Viva Format)
+## How to Explain Factory Design Pattern (Simple Explanation)
 
-### Definition
-"Factory is a creational design pattern which helps us to abstract the object creation logic at one place, in one class which is called factory."
+### 1. Definition
+"Factory is a creational design pattern that helps us abstract object creation logic into one place – a class called Factory. Instead of calling constructors everywhere, we delegate object creation to a factory."
 
-### Bird Example (Simple Factory)
-- **Problem**: Instead of creating objects directly using `new Hen()`, `new Pigeon()` everywhere
-- **Solution**: Use factory that takes input and creates objects accordingly
-- **Example**: `BirdFactory.getBird("Hen")` → creates Hen object
-- **Key Point**: All created birds can still call their methods like `fly()`, `eat()` because they inherit from Bird class
+### 2. Bird Example (Simple Factory)
+"For example, suppose we have different birds like Hen and Pigeon. Without a factory, we'd write:"
+```java
+Bird b1 = new Hen();
+Bird b2 = new Pigeon();
+```
 
-### Stone Example (Factory Method)
-- **Problem**: What if we need different creation strategies?
-- **Solution**: Multiple factories implementing same interface `IStoneFactory`
-- **BalancedStoneFactory**: Creates stones in equal distribution (Level-1)
-- **RandomStoneFactory**: Creates stones randomly (Level-2)
-- **Key Point**: Both call `getStone()` method but with different creation logic
+"But with a factory:"
+```java
+Bird b1 = BirdFactory.getBird("Hen");
+Bird b2 = BirdFactory.getBird("Pigeon");
+```
 
-### Core Understanding
-- **Simple Factory**: One factory takes input, creates appropriate objects
-- **Factory Method**: Multiple factories, each with different creation strategies
-- **Benefit**: Centralized creation logic, easy maintenance, supports polymorphism
-- **Real Usage**: Client calls factory methods without knowing internal creation details
+The factory takes input ("Hen") and creates the object.
+
+The created bird can still do its behavior:
+```java
+b1.fly();
+b1.eat();
+```
+
+**Key Point**: Client code doesn't care how objects are created, it just uses them.
+
+### 3. Stone Example (Evolution from Simple Factory → Factory Method)
+"Now, let's take a game where stones are generated."
+
+**Simple Factory for Stones**
+- One factory, takes input like "Level-1" or "Level-2"
+- Level-1: equal distribution → need to track what's already created
+- Level-2: random generation
+
+**Problem?**
+- Too many if-else
+- Hard to extend if new levels come
+- One class is doing too much
+
+**Factory Method (Better)**
+"So instead of one big StoneFactory, we create an abstraction."
+
+```java
+interface IStoneFactory {
+    Stone getStone();
+}
+
+class BalancedStoneFactory implements IStoneFactory {
+    public Stone getStone() { /* equal distribution */ }
+}
+
+class RandomStoneFactory implements IStoneFactory {
+    public Stone getStone() { /* random stone */ }
+}
+```
+
+**Client Code:**
+```java
+IStoneFactory factory = new BalancedStoneFactory(); // Level-1
+Stone s = factory.getStone();
+```
+
+Adding new levels is easy → just add a new factory class.
+
+### 4. Core Understanding
+- **Simple Factory**: One factory, takes input, returns object
+- **Factory Method**: Multiple factories, each has its own strategy
+- **Why use Factory?** Centralized creation, easy maintenance, supports polymorphism
