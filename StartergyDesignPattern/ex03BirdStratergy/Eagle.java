@@ -1,6 +1,6 @@
 package ex03BirdStratergy;
 
-
+//probably a inncorrect solution refer ex04BirdStrategy02, readme.md
 public class Eagle  implements IFlyStratergy, IHunStratergy{
 
     @Override

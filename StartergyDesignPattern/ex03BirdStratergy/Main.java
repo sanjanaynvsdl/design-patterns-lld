@@ -1,23 +1,34 @@
 package ex03BirdStratergy;
 
+//probably a inncorrect solution refer ex04BirdStrategy02, readme.md
 public class Main {
     public static void main(String[] args) {
-        // IFlyStratergy flyHigh = new FlyHigh();
-        // IHunStratergy gorundHunt = new GroundHunting();
-        //--above example is incorrect as we need to create concrete classes of birds not its behavour
 
-        IFlyStratergy pigeonFly = new Pigeon();
-        IHunStratergy pigeonHunt = new Pigeon();
+        //case-1
+        IFlyStratergy flyHigh = new FlyHigh();
+        IHunStratergy gorundHunt = new GroundHunting();
+        
 
-        //eagle
-        IFlyStratergy eagleFLy = new Eagle();
-        IHunStratergy eagleHunt = new Eagle();
+
+        //case-2
+        // IFlyStratergy pigeonFly = new Pigeonv0();
+        // IHunStratergy pigeonHunt = new Pigeonv0();
+
+        // //eagle
+        // IFlyStratergy eagleFLy = new Eaglev0();
+        // IHunStratergy eagleHunt = new Eaglev0();
+
+        //------i think even case1 is right,
+        
 
         //Bird
         // Bird bird  = new Bird(flyHigh, gorundHunt);
-        Bird eagle = new Bird(eagleFLy,eagleHunt);
+        Bird eagle = new Bird(flyHigh,gorundHunt);
         eagle.fly();
         eagle.hunt();
+
+        //also, for those cases 0> where we want to crearte Eagle, Pigron concreate objects
+        //refer ex04BirdStrategy02 folder, in StrategyDesingPattern
     }
     
 }

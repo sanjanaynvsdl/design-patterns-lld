@@ -1,7 +1,7 @@
 package ex03BirdStratergy;
 
-
-public class Pigeon  implements IFlyStratergy, IHunStratergy{
+//probably a inncorrect solution refer ex04BirdStrategy02, readme.md
+public class Pigeon  implements IFlyStrategy, IHuntStrategy{
 
     @Override
     public void fly() {
