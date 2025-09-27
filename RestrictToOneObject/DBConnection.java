@@ -13,7 +13,7 @@ public class DBConnection {
     public static DBConnection getInstance() {
         return newDbconnection;
     }
-
+    
     public static String getType() {
         return newDbconnection.type;
     }

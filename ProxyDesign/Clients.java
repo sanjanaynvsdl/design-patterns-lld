@@ -24,6 +24,14 @@ class client1 {
 // even then due to the obj being intialized while client2 creation
 // this leads to performance issue.
 
+class Main {
+
+    ITextParser bookparser = new BookParser("book");
+
+    Client2 clinet2 = new Client2(bookparser);
+
+}
+
 class Client2 {
     ITextParser textParser;
 

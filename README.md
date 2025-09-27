@@ -11,3 +11,5 @@
 10- Strategy <br>
 11- Proxy <br>
 12- Observer <br>
+13- State Design Pattern <br>
+
