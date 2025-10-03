@@ -8,7 +8,7 @@ Let's say there is a parent class Bird and we have different types of birds like
 ```java
 class Factory {
     static Bird getBird(String type) {
-        if(type.equals("Hen")) {
+        if(type.equals("Hen")) { 
             return new Hen();
         } else if(type.equals("Pigeon")) {
             return new Pigeon();

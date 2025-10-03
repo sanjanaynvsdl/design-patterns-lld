@@ -18,3 +18,5 @@ public class DBConnectionInnerClass {
         private static final DBConnectionInnerClass instnace = new DBConnectionInnerClass("sql");
     }
 }
+
+

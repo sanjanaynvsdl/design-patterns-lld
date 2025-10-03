@@ -13,5 +13,4 @@ public class HostelObserver  implements StudentObserver{
     public void leave() {
         System.out.println("[Student is on leave!]");
     }
-    
 }

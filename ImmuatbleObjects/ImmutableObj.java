@@ -1,6 +1,6 @@
 package ImmuatbleObjects;
 
-public class ImmutableObj {
+public final class ImmutableObj {
     private final String name;
     private final String email;
     private final int id;
