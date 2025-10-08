@@ -13,5 +13,4 @@ public class AcademicObserver implements StudentObserver {
     public void generateScoreCard() {
         System.out.println("[RE_GENERATED GRADE SHEET!]");
     }
-    
 }
